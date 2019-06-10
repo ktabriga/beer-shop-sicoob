@@ -22,8 +22,10 @@ class HomeScreen extends Component {
 
   async componentDidMount() {
     const response = await fetch('http://localhost:3000/api/beers')
-    const data = await response.json()
-    console.log(data)
+    if (response.ok) {
+      const data = await response.json()
+      console.log(data)
+    }
     //try {
     //  const response = await api.getBeers()
     //  console.log(response)
