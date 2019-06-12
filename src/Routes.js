@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeScreen from './Containers/HomeScreen'
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 const Pedido = ({match, history}) => (
   <div>

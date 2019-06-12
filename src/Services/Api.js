@@ -1,3 +1,12 @@
-import ApiFixture from '../Fixtures/Api'
+import {create} from 'apisauce'
 
-export default ApiFixture
+const api = create({
+  baseURL: 'http://localhost:3000/api',
+})
+
+export default {
+  setToken: (token) => api.setHeader('AuthToken', token),
+  getBeers: () => api.get('beers'),
+  getBeer: (id) => api.get(`beers/${id}`),
+  createBeer: (data) => api.post('beers', data),
+}
