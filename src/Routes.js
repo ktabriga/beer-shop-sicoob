@@ -1,24 +1,39 @@
 import React from 'react'
 import HomeScreen from './Containers/HomeScreen'
+import PedidoScreen from './Containers/PedidoScreen'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
-const Pedido = ({match, history}) => (
-  <div>
-    <h1>Pedido Cerveja Id {match.params.beerId}</h1>
-    <button onClick={() => history.goBack()}>Voltar</button>
-  </div>
-)
+const useStyles = makeStyles({
+  appBar: {
+    color: 'white'
+  }
+})
 
-const Routes = () => (
-  <div>
-    <Router>
-      <Switch>
-        <Route path='/' exact component={HomeScreen} />
-        <Route path='/pedido/:beerId' exact component={Pedido} />
-        <Route path='/pedido/info' exact render={(props) => <h1>Info</h1>} />
-      </Switch>
-    </Router>
-  </div>
-)
+
+const Routes = () => {
+  const classes = useStyles()
+  return (
+    <div>
+      <AppBar position="static" className={classes.appBar} color="primary">
+        <Toolbar>
+          <Typography variant="h6" color="inherit">
+            Beer Shop
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Router>
+        <Switch>
+          <Route path='/' exact component={HomeScreen} />
+          <Route path='/pedido/:beerId' exact component={PedidoScreen} />
+          <Route path='/pedido/info' exact render={(props) => <h1>Info</h1>} />
+        </Switch>
+      </Router>
+    </div>
+  )
+}
 
 export default Routes

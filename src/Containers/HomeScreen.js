@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import './HomeScreen.css';
-import Title from '../Components/Title'
 import Timer from './TimerContainer'
-import Button from '@material-ui/core/Button'
 import api from '../Services/Api'
 import BeerList from '../Components/BeerList'
 
 const styles = {
   timer: {
-    position: 'absolute',
+    position: 'fixed',
     right: 20,
-    top: 20
+    bottom: 20
   }
 }
 
@@ -36,20 +34,14 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const {title, availableCount, beers} = this.state
+    const {beers} = this.state
     const {history} = this.props
     return (
       <div className="HomeScreen">
-        <Title
-          color='green'
-          name={title}
-          count={availableCount} />
-        <Timer style={styles.timer}/>
-        <Button onClick={() => history.push('pedido/20')}>
-          Fazer pedido
-        </Button>
-        <div style={{height: 80}}></div>
-        <BeerList list={beers}/>
+        <div style={{height: 40}} />
+        <BeerList
+          onClick={beer => history.push(`/pedido/${beer.id}`)}
+          list={beers}/>
       </div>
     );
   }
