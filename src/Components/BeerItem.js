@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   }
 })
 
-const BeerItem = ({beer, onClick}) => {
+const BeerItem = ({beer, onClick, hideClick}) => {
   const classes = useStyles()
 
   return (
@@ -39,9 +39,13 @@ const BeerItem = ({beer, onClick}) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size='small' color='primary' onClick={onClick}>
-            Comprar
-          </Button>
+          {
+            hideClick ? null : (
+              <Button size='small' color='primary' onClick={onClick}>
+                Comprar
+              </Button>
+            )
+          }
         </CardActions>
       </Card>
     </Grid>
